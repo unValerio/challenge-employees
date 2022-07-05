@@ -13,15 +13,15 @@ function App() {
   const employeesData = useAppSelector(selectEmployeesData)
 
   useEffect(() => {
-    if(employeesStatus !== 'FULFILLED') dispatch(getEmployees())
-  }, [dispatch, employeesStatus]);
+    dispatch(getEmployees())
+  }, [dispatch]);
 
   return (
     <>
       <h3>activeEmployees</h3>
       <span>someone</span>
       <Container>
-        {employeesData.map((employee) => {
+        {employeesStatus && employeesData.map((employee) => {
           return <Card key={employee.id} employee={employee} active={true} />
         })}
       </Container>
