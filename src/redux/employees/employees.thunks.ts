@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+
 import { EmployeesData } from './employees.types';
 
 export const getEmployees = createAsyncThunk('employees/getEmployees', async () => {
@@ -11,6 +12,6 @@ export const getEmployees = createAsyncThunk('employees/getEmployees', async () 
       profile_image: "",
     }
   ];
-  
+
   return employees;
 });
