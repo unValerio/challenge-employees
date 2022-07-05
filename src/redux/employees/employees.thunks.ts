@@ -10,6 +10,13 @@ export const getEmployees = createAsyncThunk('employees/getEmployees', async () 
       employee_salary: 320800,
       id: 1,
       profile_image: "",
+    },
+    {
+      employee_age: 63,
+      employee_name: "Garrett Winters",
+      employee_salary: 170750,
+      id: 2,
+      profile_image: "",
     }
   ];
 

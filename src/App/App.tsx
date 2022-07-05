@@ -22,7 +22,7 @@ function App() {
       <span>someone</span>
       <Container>
         {employeesData.map((employee) => {
-          return <Card employee={employee} active={true} />
+          return <Card key={employee.id} employee={employee} active={true} />
         })}
       </Container>
     </>
