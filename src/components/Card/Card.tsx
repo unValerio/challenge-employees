@@ -6,11 +6,12 @@ import { CardWrapper } from './Card.styled';
 
 export interface CardProps {
   employee: Employee;
-  active?: boolean;
+  activateEmployee: (id: Employee['id']) => void;
+  deactivateEmployee: (id: Employee['id']) => void;
 }
 
-function Card({ employee, active = false }: CardProps) {
-  const { id, employee_name, employee_salary, employee_age } = employee;
+function Card({ employee, activateEmployee, deactivateEmployee }: CardProps) {
+  const { id, employee_name, employee_salary, employee_age, active } = employee;
 
   return (
     <CardWrapper active={active}>
@@ -18,8 +19,8 @@ function Card({ employee, active = false }: CardProps) {
       <span>{employee_name}</span>
       <span>{employee_salary}</span>
       <span>{employee_age}</span>
-      <Button value='Activate' disabled />
-      <Button value='Deactivate' />
+      <Button value='Activate' disabled={active} onClick={() => activateEmployee(id)}  />
+      <Button value='Deactivate' disabled={!active} onClick={() => deactivateEmployee(id)} />
     </CardWrapper>
   );
 }

@@ -4,6 +4,7 @@ export type Employee = {
   employee_name: string;
   employee_salary: number;
   profile_image: string;
+  active?: boolean;
 };
 
 export type EmployeesData = Array<Employee>;

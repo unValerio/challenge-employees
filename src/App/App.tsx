@@ -1,28 +1,40 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import Card from '../components/Card';
-import { selectEmployeesData, selectEmployeesStatus } from '../redux/employees/employees.selectors';
-import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { Container } from './App.styled' 
-
-import { getEmployees } from '../redux/employees/employees.thunks'
+import useApp from './useApp';
 
 function App() {
-  const dispatch = useAppDispatch();
-  const employeesStatus = useAppSelector(selectEmployeesStatus);
-  const employeesData = useAppSelector(selectEmployeesData)
-
-  useEffect(() => {
-    dispatch(getEmployees())
-  }, [dispatch]);
+  const {
+    employeesStatus,
+    activeEmployees,
+    employeesData,
+    activateEmployeeHandler,
+    deactivateEmployeeHandler,
+  } = useApp();
 
   return (
     <>
       <h3>activeEmployees</h3>
-      <span>someone</span>
+
+      {employeesStatus && activeEmployees.map((employee) => {
+        const { employee_name } = employee;
+
+        return (
+          <>
+            <span>{employee_name}</span><br />
+          </>
+        );
+      })}
+
       <Container>
         {employeesStatus && employeesData.map((employee) => {
-          return <Card key={employee.id} employee={employee} active={true} />
+          return <Card
+            activateEmployee={activateEmployeeHandler}
+            deactivateEmployee={deactivateEmployeeHandler}
+            key={employee.id}
+            employee={employee}
+            />
         })}
       </Container>
     </>
