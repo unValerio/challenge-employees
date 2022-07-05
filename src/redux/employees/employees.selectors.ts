@@ -10,6 +10,10 @@ export const selectEmployeesStatus = createSelector(selectEmployees, (employees)
   return employees.status;
 })
 
+export const selectEmployeesData = createSelector(selectEmployees, (employees) => {
+  return employees.data;
+})
+
 // Memoized selector from reduxjs/reselect
 // export const selectSomething = createSelector(selectExample, (example) => {
 //   return Object.values(example).reduce((total, item) => total + item.quantity, 0);

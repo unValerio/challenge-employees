@@ -1,23 +1,29 @@
 import React, { useEffect } from 'react';
 
 import Card from '../components/Card';
-import { useAppSelector } from '../redux/hooks';
+import { selectEmployeesData, selectEmployeesStatus } from '../redux/employees/employees.selectors';
+import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { Container } from './App.styled' 
 
+import { getEmployees } from '../redux/employees/employees.thunks'
+
 function App() {
+  const dispatch = useAppDispatch();
   const employeesStatus = useAppSelector(selectEmployeesStatus);
+  const employeesData = useAppSelector(selectEmployeesData)
 
   useEffect(() => {
-    if()
-  }, []);
+    if(employeesStatus !== 'FULFILLED') dispatch(getEmployees())
+  }, [dispatch, employeesStatus]);
 
   return (
     <>
       <h3>activeEmployees</h3>
       <span>someone</span>
       <Container>
-        <Card active={true} />
-        <Card active={false} />
+        {employeesData.map((employee) => {
+          return <Card employee={employee} active={true} />
+        })}
       </Container>
     </>
   );
